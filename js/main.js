@@ -96,7 +96,6 @@ window.onload = function() {
 	        	 nemies[i].update();
         	}
     	}
-        game.physics.arcade.collide(bullet, enemies, dealDamage, null, this);
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
