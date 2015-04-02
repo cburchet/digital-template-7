@@ -121,7 +121,7 @@ window.onload = function() {
     function fire()
     {
     	bullet = game.add.sprite(player.x, player.y, 'bullet');
-    	moveToXY(bullet, game.input.mousePointer.x, game.input.mousePointer.y, 10, 1);
+    	game.physics.arcade.moveToXY(bullet, game.input.mousePointer.x, game.input.mousePointer.y, 10, 1);
     }
     
     function createEnemies()
