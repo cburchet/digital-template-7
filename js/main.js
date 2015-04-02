@@ -135,7 +135,7 @@ window.onload = function() {
     
     function bulletHitEnemy (enemy, bullet) 
     {
-	int chance = game.rnd.integerInRange(0, 100);
+	var chance = game.rnd.integerInRange(0, 100);
 	if (chance == 1)
 	{
 		key = game.add.sprite(enemy.x, enemy.y, 'key');
