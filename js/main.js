@@ -30,6 +30,8 @@ window.onload = function() {
     var door;
     
     var enemy;
+    var level = 1;
+    var enemyHealth = level + 5;
     var enemies;
     var moveOn = false;
     
@@ -37,7 +39,6 @@ window.onload = function() {
     var backgroundLayer;
     var blockedLayer;
     
-    var level;
     var levelText;
     
     function create() 
