@@ -80,7 +80,7 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true
-
+	enemyHealth = level + 5;
 	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
     }
     
@@ -130,7 +130,7 @@ window.onload = function() {
     {
 
     bullet.kill();
-    var destroyed = enemy.damage();
+    var destroyed = enemy.damage(1);
 
 }
     
