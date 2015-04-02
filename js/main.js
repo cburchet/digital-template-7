@@ -24,6 +24,7 @@ window.onload = function() {
         game.load.image('key', 'assets/key.png');
         game.load.image('bird', 'assets/birds.png');
         game.load.image('bullet', 'assets/bullet.png');
+        game.load.audio('music', 'assets/bg2.mpg');
     }
     var player;
     var bullet;
@@ -44,6 +45,8 @@ window.onload = function() {
     
     var level;
     var levelText;
+    
+    var music;
     
     function create() 
     {
@@ -83,6 +86,9 @@ window.onload = function() {
 	enemies.enableBody = true
 	enemies.health = enemyHealth;
 	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
+	
+	music = game.add.audio('music');
+	music.play('', 0, .1, true);
     }
     
     function update() 
