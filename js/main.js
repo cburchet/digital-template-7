@@ -27,14 +27,16 @@ window.onload = function() {
     }
     var player;
     var bullet;
+    var fireRate = 100;
+    var nextFire = 0;
     var cursors;
     
     var door;
+    var key;
     
     var enemy;
     var enemyHealth;
     var enemies;
-    var moveOn = false;
     
     var map;
     var backgroundLayer;
@@ -71,8 +73,6 @@ window.onload = function() {
 	
 	cursors = game.input.keyboard.createCursorKeys();
 	
-	door = game.add.sprite(game.world.width - 64, game.world.height - 128, 'door');
-	game.physics.enable(door);
 	
 	level = 1;
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
@@ -89,6 +89,7 @@ window.onload = function() {
     {
         game.physics.arcade.collide(player, blockedLayer);
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
+	game.physics.arcade.collide(player, key, collectKey, null, this);
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
@@ -122,16 +123,27 @@ window.onload = function() {
     
     function fire()
     {
-    	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
-    	game.physics.enable(bullet);
-    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 500);
+    	if (game.time.now > nextFire)
+    	{
+    		nextFire = game.time.now + fireRate;
+	    	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
+	    	bullet.lifespan = 10000;
+	    	game.physics.enable(bullet);
+	    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 500);
+    	}
     }
     
     function bulletHitEnemy (enemy, bullet) 
     {
-
-    bullet.kill();
-    var destroyed = enemy.damage(1);
+	int chance = game.rnd.integerInRange(0, 100);
+	if (chance == 1)
+	{
+		key = game.add.sprite(enemy.x, enemy.y, 'key');
+		game.physics.enable(key);
+		key.body.gravity.y = 200;
+	}
+	bullet.kill();
+    	var destroyed = enemy.damage(1);
 
 }
     
@@ -141,10 +153,15 @@ window.onload = function() {
     	enemy.body.velocity.x = -75;
     }
     
+    function collectKey()
+    {
+    	key.kill();
+    	door = game.add.sprite(game.world.width - 64, game.world.height - 128, 'door');
+	game.physics.enable(door);
+    }
+    
     function nextLevel()
     {
-    	if (moveOn == true)
-    	{
 	    	level++;
 	    	enemyHealth = level + 5;
 	    	enemies.health = enemyHealth;
@@ -156,6 +173,5 @@ window.onload = function() {
 		player.frame = 4;
 	    //	introText.visible = true;
 	    //	game.input.onDown.add(begin, this);
-    	}
     }
 };
