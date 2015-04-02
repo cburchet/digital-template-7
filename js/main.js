@@ -80,22 +80,14 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true
-	enemyHealth = level + 5;
+
 	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
     }
     
     function update() 
     {
         game.physics.arcade.collide(player, blockedLayer);
-        for (var i = 0; i < enemies.length; i++)
-	 {
-		if (enemies[i].alive)
-        	{
-	            	enemiesAlive++;
-	            	game.physics.arcade.overlap(bullet, enemies[i].enemy, bulletHitEnemy, null, this);
-	        	 nemies[i].update();
-        	}
-    	}
+	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
