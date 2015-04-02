@@ -123,7 +123,7 @@ window.onload = function() {
     {
     	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
     	game.physics.enable(bullet);
-    	game.physics.arcade.moveToXY(bullet, game.input.mousePointer.x, game.input.mousePointer.y, 10, 1);
+    	game.physics.arcade.moveToObject(bullet, game.input.mousePointer, 500);
     }
     
     function dealDamage(bullet, enemy)
