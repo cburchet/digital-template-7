@@ -127,7 +127,7 @@ window.onload = function() {
     	{
     		nextFire = game.time.now + fireRate;
 	    	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
-	    	bullet.lifespan = 10000;
+	    	bullet.lifespan = 1000;
 	    	game.physics.enable(bullet);
 	    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 500);
     	}
