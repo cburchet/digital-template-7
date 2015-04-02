@@ -129,7 +129,7 @@ window.onload = function() {
 	    	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
 	    	bullet.lifespan = 1000;
 	    	game.physics.enable(bullet);
-	    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 500);
+	    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer);
     	}
     }
     
