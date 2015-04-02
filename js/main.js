@@ -24,7 +24,7 @@ window.onload = function() {
         game.load.image('key', 'assets/key.png');
         game.load.image('bird', 'assets/birds.png');
         game.load.image('bullet', 'assets/bullet.png');
-        game.load.audio('music', 'assets/bg2.mpg');
+        game.load.audio('music', 'assets/bg2.mp3');
     }
     var player;
     var bullet;
