@@ -21,6 +21,8 @@ window.onload = function() {
         game.load.image( 'gameTiles', 'assets/tiles.png' );
         game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
         game.load.image('door', 'assets/castledoors.png');
+        game.load.image('key', 'assets/key.png');
+        game.load.image('bird', 'assets/birds.png');
     }
     var player;
     var cursors;
@@ -28,6 +30,7 @@ window.onload = function() {
     var door;
     
     var enemy;
+    var enemies;
     var moveOn = false;
     
     var map;
@@ -71,6 +74,10 @@ window.onload = function() {
 	level = 1;
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
 	levelText.fixedToCamera = true;
+	
+	enemies = game.add.group();
+	enemies.enableBody = true;
+	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
     }
     
     function update() 
@@ -103,7 +110,15 @@ window.onload = function() {
     	}
     }
     
-        function nextLevel()
+    function createEnemies()
+    {
+    	enemy = enemies.create(game.world.height + 64, game.rnd.integerInRange(100, 600), 'birds');
+    	enemy.animations.add('left', [0, 1, 2, 3, 4], 10, true);
+    	enemy.velocity.x = -75;
+    	enemy.animations.play('left');
+    }
+    
+    function nextLevel()
     {
     	if (moveOn == true)
     	{
