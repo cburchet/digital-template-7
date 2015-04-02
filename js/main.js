@@ -23,8 +23,10 @@ window.onload = function() {
         game.load.image('door', 'assets/castledoors.png');
         game.load.image('key', 'assets/key.png');
         game.load.image('bird', 'assets/birds.png');
+        game.load.image('bullet', 'assets/bullet.png');
     }
     var player;
+    var bullets;
     var cursors;
     
     var door;
@@ -88,6 +90,7 @@ window.onload = function() {
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
+	game.input.mouse.onDown.add(fire, this);
     	if (cursors.left.isDown)
     	{
 		player.body.velocity.x = -150;
@@ -110,6 +113,12 @@ window.onload = function() {
     	{
     		player.body.velocity.y = -250;
     	}
+    }
+    
+    function fire()
+    {
+    	bullet = game.add.sprite(player.x, player.y, 'bullet');
+    	moveToXY(bullet, game.input.mousePointer.x, game.input.mousePointer.y, 10, 1);
     }
     
     function createEnemies()
