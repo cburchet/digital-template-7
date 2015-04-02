@@ -30,8 +30,7 @@ window.onload = function() {
     var door;
     
     var enemy;
-    var level = 1;
-    var enemyHealth = level + 5;
+    var enemyHealth;
     var enemies;
     var moveOn = false;
     
@@ -39,6 +38,7 @@ window.onload = function() {
     var backgroundLayer;
     var blockedLayer;
     
+    var level;
     var levelText;
     
     function create() 
@@ -77,7 +77,8 @@ window.onload = function() {
 	levelText.fixedToCamera = true;
 	
 	enemies = game.add.group();
-	enemies.enableBody = true;
+	enemies.enableBody = true
+	enemyHealth = level + 5;
 	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
     }
     
@@ -114,6 +115,7 @@ window.onload = function() {
     function createEnemies()
     {
     	enemy = enemies.create(game.world.height + 64, game.rnd.integerInRange(100, 600), 'bird');
+    	enemy.health = enemyHealth;
     	enemy.animations.add('left', [0, 1, 2, 3, 4], 10, true);
     	enemy.body.velocity.x = -75;
     	enemy.animations.play('left');
@@ -124,6 +126,7 @@ window.onload = function() {
     	if (moveOn == true)
     	{
 	    	level++;
+	    	enemyHealth = level + 5;
 	    	levelText.text = 'Level: ' + level;
 	    	player.x = 33;
 	    	player.y = game.world.height-49;
