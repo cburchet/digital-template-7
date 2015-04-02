@@ -87,6 +87,7 @@ window.onload = function() {
     function update() 
     {
         game.physics.arcade.collide(player, blockedLayer);
+        game.physics.arcade.collide(bullet, enemies, dealDamage, null, this);
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
@@ -123,6 +124,11 @@ window.onload = function() {
     	bullet = game.add.sprite(player.x, player.y, 'bullet');
     	game.physics.enable(bullet);
     	game.physics.arcade.moveToXY(bullet, game.input.mousePointer.x, game.input.mousePointer.y, 10, 1);
+    }
+    
+    function dealDamage(bullet, enemy)
+    {
+    	enemy.damage(1);
     }
     
     function createEnemies()
