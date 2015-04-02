@@ -138,7 +138,6 @@ window.onload = function() {
     function createEnemies()
     {
     	enemy = enemies.create(game.world.width + 64, game.rnd.integerInRange(50, 500), 'bird');
-    	enemy.health = enemyHealth;
     	enemy.body.velocity.x = -75;
     }
     
