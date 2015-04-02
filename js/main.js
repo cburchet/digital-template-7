@@ -116,9 +116,7 @@ window.onload = function() {
     {
     	enemy = enemies.create(game.world.width + 64, game.rnd.integerInRange(100, 600), 'bird');
     	enemy.health = enemyHealth;
-    	enemy.animations.add('left', [0, 1, 2, 3, 4], 10, true);
     	enemy.body.velocity.x = -75;
-    	enemy.animations.play('left');
     }
     
     function nextLevel()
