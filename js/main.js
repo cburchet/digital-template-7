@@ -87,13 +87,22 @@ window.onload = function() {
     function update() 
     {
         game.physics.arcade.collide(player, blockedLayer);
+        for (var i = 0; i < enemies.length; i++)
+	 {
+		if (enemies[i].alive)
+        	{
+	            	enemiesAlive++;
+	            	game.physics.arcade.overlap(bullet, enemies[i].enemy, bulletHitEnemy, null, this);
+	        	 nemies[i].update();
+        	}
+    	}
         game.physics.arcade.collide(bullet, enemies, dealDamage, null, this);
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
 	if (game.input.activePointer.isDown)
 	{
-	fire();
+		fire();
 	}
     	if (cursors.left.isDown)
     	{
@@ -123,13 +132,16 @@ window.onload = function() {
     {
     	bullet = game.add.sprite(player.x, player.y - 20, 'bullet');
     	game.physics.enable(bullet);
-    	game.physics.arcade.moveToObject(bullet, game.input.mouse, 500);
+    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer, 500);
     }
     
-    function dealDamage(bullet, enemy)
+    function bulletHitEnemy (enemy, bullet) 
     {
-    	enemy.damage(1);
-    }
+
+    bullet.kill();
+    var destroyed = enemy.damage();
+
+}
     
     function createEnemies()
     {
