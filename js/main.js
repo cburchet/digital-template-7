@@ -108,7 +108,7 @@ window.onload = function() {
 	
     	if (cursors.up.isDown && player.body.onFloor())
     	{
-    		player.body.velocity.y = -350;
+    		player.body.velocity.y = -250;
     	}
     }
     
