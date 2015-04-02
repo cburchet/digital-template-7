@@ -90,7 +90,10 @@ window.onload = function() {
 	game.physics.arcade.overlap(player, door, nextLevel, null, this);
         player.body.velocity.x = 0;
 	 
-	game.input.mouse.onDown.add(fire, this);
+	if (game.input.activePointer.isDown)
+	{
+	fire();
+	}
     	if (cursors.left.isDown)
     	{
 		player.body.velocity.x = -150;
