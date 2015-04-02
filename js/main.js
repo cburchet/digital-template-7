@@ -78,9 +78,10 @@ window.onload = function() {
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
 	levelText.fixedToCamera = true;
 	
+	enemyHealth = level + 5;
 	enemies = game.add.group();
 	enemies.enableBody = true
-	enemyHealth = level + 5;
+	enemies.health = enemyHealth;
 	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
     }
     
