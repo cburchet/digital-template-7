@@ -26,7 +26,7 @@ window.onload = function() {
         game.load.image('bullet', 'assets/bullet.png');
     }
     var player;
-    var bullets;
+    var bullet;
     var cursors;
     
     var door;
