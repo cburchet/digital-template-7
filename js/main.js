@@ -147,6 +147,7 @@ window.onload = function() {
     	{
 	    	level++;
 	    	enemyHealth = level + 5;
+	    	enemies.health = enemyHealth;
 	    	levelText.text = 'Level: ' + level;
 	    	player.x = 33;
 	    	player.y = game.world.height-49;
