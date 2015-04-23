@@ -93,6 +93,7 @@ window.onload = function() {
         game.physics.arcade.collide(player, blockedLayer);
         game.physics.arcade.collide(enemies, blockedLayer);
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
+	game.physics.arcade.overlap(enemyBullet, player, bulletHitPlayer, null, this);
        
        //enemy move/fire controls
        if(Phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 150){
@@ -162,10 +163,17 @@ window.onload = function() {
     
     function bulletHitEnemy (goblin, bullet) 
     {
-	bullet.kill();
+	bullet.destroy();
     	goblin.destroy();
 
-}
+    }
+    
+    function bulletHitEnemy (enemyBullet, player) 
+    {
+	enemyBullet.destroy();
+    	gameOver();
+
+    }
     
     function gameOver()
     {
