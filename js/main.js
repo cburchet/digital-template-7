@@ -93,13 +93,13 @@ window.onload = function() {
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
        
        //enemy move/fire controls
-       if(Phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 10){
+       if(Phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 25){
        	   game.physics.arcade.moveToXY(goblin, player.x, goblin.y, 50);
        	   game.time.events.remove(enemyFireLoop);
        }
        else
        {
-       		enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 5, enemyfire, this);
+       		enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 2, enemyfire, this);
        }
        
        //player movement
