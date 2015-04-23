@@ -80,6 +80,7 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true;
+	createEnemy();
 	game.time.events.loop(2000, createEnemy, this);
 	enemyFireLoop = game.time.events.loop(2000, enemyfire, this);
 	
