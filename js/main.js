@@ -149,7 +149,7 @@ window.onload = function() {
 	    	enemyBullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
 	    	enemyBullet.lifespan = 1000;
 	    	game.physics.enable(enemyBullet);
-	    	enemyBullet.rotation = game.physics.arcade.moveToXY(enemyBullet, player.x, player.y, 1000);
+	    	enemyBullet.rotation = game.physics.arcade.moveToXY(enemyBullet, player.x, player.y, 100);
     	}
     }
     
