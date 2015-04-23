@@ -71,7 +71,6 @@ window.onload = function() {
 	
 	cursors = game.input.keyboard.createCursorKeys();
 	
-	var enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 2, enemyfire, this);
 	
 	level = 1;
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
@@ -81,6 +80,7 @@ window.onload = function() {
 	enemies.enableBody = true
 	goblin = enemies.create(200, game.world.height - 64, 'goblin');
 	game.phsyics.enable(goblin);
+	enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 2, enemyfire, this);
 	
 	music = game.add.audio('music');
 	music.play('', 0, .1, true);
