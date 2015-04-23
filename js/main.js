@@ -32,6 +32,7 @@ window.onload = function() {
     
     var goblin;
     var enemies;
+    var enemyFireLoop;
     
     var map;
     var backgroundLayer;
@@ -70,6 +71,7 @@ window.onload = function() {
 	
 	cursors = game.input.keyboard.createCursorKeys();
 	
+	var enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 2, enemyfire, this);
 	
 	level = 1;
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
@@ -93,11 +95,11 @@ window.onload = function() {
        //enemy move/fire controls
        if(phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 10){
        	   game.physics.arcade.moveToXY(goblin, player.x, goblin.y, 50);
+       	   game.time.events.remove(enemyFireLoop);
        }
        else
        {
-       		var enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 5, enemyfire, this);
-       		game.time.events.remove(enemyFireLoop);
+       		enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 5, enemyfire, this);
        }
        
        //player movement
