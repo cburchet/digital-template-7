@@ -91,7 +91,14 @@ window.onload = function() {
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
        
        //enemy move/fire controls
-       game.physics.arcade.moveToXY(goblin, player.x, goblin.y, 50);
+       if(phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 10){
+       	   game.physics.arcade.moveToXY(goblin, player.x, goblin.y, 50);
+       }
+       else
+       {
+       		var enemyFireLoop = game.time.events.loop(Phaser.Timer.SECOND * 5, enemyfire, this);
+       		game.time.events.remove(enemyFireLoop);
+       }
        
        //player movement
         player.body.velocity.x = 0;
@@ -121,6 +128,18 @@ window.onload = function() {
     	if (cursors.up.isDown && player.body.onFloor())
     	{
     		player.body.velocity.y = -250;
+    	}
+    }
+    
+    function enemyfire()
+    {
+    	if (game.time.now > nextFire)
+    	{
+    		nextFire = game.time.now + fireRate;
+	    	bullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
+	    	bullet.lifespan = 1000;
+	    	game.physics.enable(bullet);
+	    	bullet.rotation = game.physics.arcade.moveToXY(bullet, player.x, player.y, 1000);
     	}
     }
     
