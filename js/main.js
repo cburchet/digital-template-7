@@ -77,7 +77,7 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true
-	goblin = enemies.add('goblin');
+	goblin = enemies.create(200, 40, 'goblin');
 	
 	music = game.add.audio('music');
 	music.play('', 0, .1, true);
