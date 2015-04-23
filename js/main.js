@@ -97,11 +97,11 @@ window.onload = function() {
        //enemy move/fire controls
        if(Phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 25){
        	   game.physics.arcade.moveToXY(goblin, player.x, goblin.y, 50);
-       	   enemyFireLoop.pause();
+       	   enemyFireLoop.timer.pause();
        }
        else
        {
-       		enemyFireLoop.resume();
+       		enemyFireLoop.timer.resume();
        }
        
        //player movement
