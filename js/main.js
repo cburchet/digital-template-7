@@ -34,6 +34,7 @@ window.onload = function() {
     var goblin;
     var enemies;
     var enemyFireLoop;
+    var enemyBullet;
     
     var map;
     var backgroundLayer;
@@ -139,10 +140,10 @@ window.onload = function() {
     	{
     		var enemyFireRate = 1000;
     		enemyNextFire = game.time.now + enemyFireRate;
-	    	bullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
-	    	bullet.lifespan = 1000;
-	    	game.physics.enable(bullet);
-	    	bullet.rotation = game.physics.arcade.moveToXY(bullet, player.x, player.y, 1000);
+	    	enemyBullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
+	    	enemyBullet.lifespan = 1000;
+	    	game.physics.enable(enemyBullet);
+	    	enemyBullet.rotation = game.physics.arcade.moveToXY(enemyBullet, player.x, player.y, 1000);
     	}
     }
     
