@@ -30,6 +30,7 @@ window.onload = function() {
     var nextFire = 0;
     var cursors;
     
+    var enemyNextFire = 0;
     var goblin;
     var enemies;
     var enemyFireLoop;
@@ -135,9 +136,10 @@ window.onload = function() {
     
     function enemyfire()
     {
-    	if (game.time.now > nextFire)
+    	if (game.time.now > enemyNextFire)
     	{
-    		nextFire = game.time.now + fireRate;
+    		var enemyFireRate = 1000;
+    		enemyNextFire = game.time.now + enemyFireRate;
 	    	bullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
 	    	bullet.lifespan = 1000;
 	    	game.physics.enable(bullet);
