@@ -91,7 +91,7 @@ window.onload = function() {
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
        
        //enemy move/fire controls
-       goblin.moveToObject('goblin', player, 25);
+       moveToObject(goblin, player, 25);
        
        //player movement
         player.body.velocity.x = 0;
