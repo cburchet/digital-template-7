@@ -82,14 +82,6 @@ window.onload = function() {
 	enemies.enableBody = true;
 	goblin = enemies.create(200, game.world.height - 64, 'goblin');
 	game.physics.enable(goblin);
-	goblin = enemies.create(800, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(1400, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(2000, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(3000, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
 //	createEnemy();
 //	game.time.events.loop(2000, createEnemy, this);
 	enemyFireLoop = game.time.events.loop(2000, enemyfire, this);
@@ -177,26 +169,15 @@ window.onload = function() {
     
     function createEnemy()
     {
-    	if (enemies.countAlive == 0)
-    	{
-    	goblin = enemies.create(200, game.world.height - 64, 'goblin');
+    	goblin = enemies.create(player.x + 300, game.world.height - 64, 'goblin');
 	game.physics.enable(goblin);
-	goblin = enemies.create(400, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(600, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(800, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(1000, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-    	}
     }
     
     function bulletHitEnemy (goblin, bullet) 
     {
 	bullet.destroy();
     	goblin.destroy();
-
+	createEnemy();
     }
     
     function bulletHitPlayer (enemyBullet, player) 
