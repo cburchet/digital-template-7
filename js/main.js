@@ -20,9 +20,7 @@ window.onload = function() {
         game.load.tilemap('world', 'assets/world.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image( 'gameTiles', 'assets/tiles.png' );
         game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-        game.load.image('door', 'assets/castledoors.png');
-        game.load.image('key', 'assets/key.png');
-        game.load.image('bird', 'assets/birds.png');
+      //  game.load.image('enemy', 'assets/enemy.png');
         game.load.image('bullet', 'assets/bullet.png');
         game.load.audio('music', 'assets/bg2.mp3');
     }
@@ -32,11 +30,7 @@ window.onload = function() {
     var nextFire = 0;
     var cursors;
     
-    var door;
-    var key;
-    
     var enemy;
-    var enemyHealth;
     var enemies;
     
     var map;
@@ -81,11 +75,10 @@ window.onload = function() {
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
 	levelText.fixedToCamera = true;
 	
-	enemyHealth = level + 5;
-	enemies = game.add.group();
-	enemies.enableBody = true
-	enemies.health = enemyHealth;
-	game.time.events.loop(Phaser.Timer.SECOND * 5, createEnemies, this);
+	//enemyHealth = level + 5;
+	//enemies = game.add.group();
+	//enemies.enableBody = true
+	//enemies.health = enemyHealth;
 	
 	music = game.add.audio('music');
 	music.play('', 0, .1, true);
@@ -94,9 +87,7 @@ window.onload = function() {
     function update() 
     {
         game.physics.arcade.collide(player, blockedLayer);
-	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
-	game.physics.arcade.collide(player, key, collectKey, null, this);
-	game.physics.arcade.overlap(player, door, nextLevel, null, this);
+	//game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
         player.body.velocity.x = 0;
 	 
 	if (game.input.activePointer.isDown)
@@ -141,29 +132,18 @@ window.onload = function() {
     
     function bulletHitEnemy (enemy, bullet) 
     {
-	var chance = game.rnd.integerInRange(0, 25);
-	if (chance == 1)
-	{
-		key = game.add.sprite(enemy.x, enemy.y, 'key');
-		game.physics.enable(key);
-		key.body.gravity.y = 200;
-	}
 	bullet.kill();
-    	var destroyed = enemy.damage(1);
+    	enemy.destroy();
 
 }
     
-    function createEnemies()
+    function gameOver()
     {
-    	enemy = enemies.create(game.world.width + 64, game.rnd.integerInRange(50, 500), 'bird');
-    	enemy.body.velocity.x = -75;
-    }
-    
-    function collectKey()
-    {
-    	key.kill();
-    	door = game.add.sprite(game.world.width - 64, game.world.height - 128, 'door');
-	game.physics.enable(door);
+    	player.body.velocity.x = 0;
+	player.animations.stop();
+	player.frame = 4;
+	var gameoverText = game.add.text(350, 300, 'Game Over', { fontSize: '128px', fill: 'red' });
+	gameoverText.fixedToCamera = true;
     }
     
     function nextLevel()
