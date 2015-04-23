@@ -81,7 +81,7 @@ window.onload = function() {
 	enemies = game.add.group();
 	enemies.enableBody = true;
 	goblin = enemies.create(200, game.world.height - 64, 'goblin');
-	game.phsyics.enable(goblin);
+	game.physics.enable(goblin);
 	enemyFireLoop = game.time.events.loop(2000, enemyfire, this);
 	
 	music = game.add.audio('music');
