@@ -20,7 +20,7 @@ window.onload = function() {
         game.load.tilemap('world', 'assets/world.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image( 'gameTiles', 'assets/tiles.png' );
         game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-      //  game.load.image('enemy', 'assets/enemy.png');
+        game.load.image('goblin', 'assets/goblin.png', 32, 48);
         game.load.image('bullet', 'assets/bullet.png');
         game.load.audio('music', 'assets/bg2.mp3');
     }
@@ -30,7 +30,7 @@ window.onload = function() {
     var nextFire = 0;
     var cursors;
     
-    var enemy;
+    var goblin;
     var enemies;
     
     var map;
@@ -75,10 +75,9 @@ window.onload = function() {
 	levelText = game.add.text(120, 0, 'Level: ' + level, { fontSize: '128px', fill: 'red' });
 	levelText.fixedToCamera = true;
 	
-	//enemyHealth = level + 5;
-	//enemies = game.add.group();
-	//enemies.enableBody = true
-	//enemies.health = enemyHealth;
+	enemies = game.add.group();
+	enemies.enableBody = true
+	goblin = enemies.add('goblin');
 	
 	music = game.add.audio('music');
 	music.play('', 0, .1, true);
@@ -87,7 +86,8 @@ window.onload = function() {
     function update() 
     {
         game.physics.arcade.collide(player, blockedLayer);
-	//game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
+        game.physics.arcade.collide(enemies, blockedLayer);
+	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
         player.body.velocity.x = 0;
 	 
 	if (game.input.activePointer.isDown)
