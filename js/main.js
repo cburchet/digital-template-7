@@ -89,6 +89,11 @@ window.onload = function() {
         game.physics.arcade.collide(player, blockedLayer);
         game.physics.arcade.collide(enemies, blockedLayer);
 	game.physics.arcade.overlap(bullet, enemies, bulletHitEnemy, null, this);
+       
+       //enemy move/fire controls
+       goblin.moveToObject('goblin', player, 25);
+       
+       //player movement
         player.body.velocity.x = 0;
 	 
 	if (game.input.activePointer.isDown)
