@@ -168,7 +168,7 @@ window.onload = function() {
 
     }
     
-    function bulletHitEnemy (enemyBullet, player) 
+    function bulletHitPlayer (enemyBullet, player) 
     {
 	enemyBullet.destroy();
     	gameOver();
