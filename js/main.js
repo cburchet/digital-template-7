@@ -20,7 +20,7 @@ window.onload = function() {
         game.load.tilemap('world', 'assets/world.json', null, Phaser.Tilemap.TILED_JSON);
         game.load.image( 'gameTiles', 'assets/tiles.png' );
         game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-        game.load.image('goblin', 'assets/goblin.png', 32, 48);
+        game.load.image('goblin', 'assets/goblin.png', 60, 60);
         game.load.image('bullet', 'assets/bullet.png');
         game.load.audio('music', 'assets/bg2.mp3');
     }
