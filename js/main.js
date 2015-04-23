@@ -102,7 +102,7 @@ window.onload = function() {
        }
        else if (Phaser.Math.distance(player.x, player.y, goblin.x, goblin.y) > 150 && player.x > goblin.x)
        {
-       		goblin.body.velocity.x = -25;
+       		goblin.body.velocity.x = 25;
        }
        else
        {
