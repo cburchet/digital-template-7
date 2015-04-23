@@ -130,10 +130,10 @@ window.onload = function() {
     	}
     }
     
-    function bulletHitEnemy (enemy, bullet) 
+    function bulletHitEnemy (goblin, bullet) 
     {
 	bullet.kill();
-    	enemy.destroy();
+    	goblin.destroy();
 
 }
     
