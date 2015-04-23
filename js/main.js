@@ -80,8 +80,18 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true;
-	createEnemy();
-	game.time.events.loop(2000, createEnemy, this);
+	goblin = enemies.create(200, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(800, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(1400, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(2000, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(3000, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+//	createEnemy();
+//	game.time.events.loop(2000, createEnemy, this);
 	enemyFireLoop = game.time.events.loop(2000, enemyfire, this);
 	
 	music = game.add.audio('music');
