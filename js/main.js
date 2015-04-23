@@ -80,16 +80,7 @@ window.onload = function() {
 	
 	enemies = game.add.group();
 	enemies.enableBody = true;
-	goblin = enemies.create(200, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(400, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(600, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(800, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
-	goblin = enemies.create(1000, game.world.height - 64, 'goblin');
-	game.physics.enable(goblin);
+	game.time.events.loop(2000, createEnemy, this);
 	enemyFireLoop = game.time.events.loop(2000, enemyfire, this);
 	
 	music = game.add.audio('music');
@@ -157,7 +148,7 @@ window.onload = function() {
 	    	enemyBullet = game.add.sprite(goblin.x + 10, goblin.y, 'bullet');
 	    	enemyBullet.lifespan = 1000;
 	    	game.physics.enable(enemyBullet);
-	    	enemyBullet.rotation = game.physics.arcade.moveToXY(enemyBullet, player.x, player.y, 100);
+	    	enemyBullet.rotation = game.physics.arcade.moveToXY(enemyBullet, player.x, player.y, 500);
     	}
     }
     
@@ -170,6 +161,23 @@ window.onload = function() {
 	    	bullet.lifespan = 1000;
 	    	game.physics.enable(bullet);
 	    	bullet.rotation = game.physics.arcade.moveToPointer(bullet, 1000, game.input.activePointer);
+    	}
+    }
+    
+    function createEnemy()
+    {
+    	if (enemies.countAlive == 0)
+    	{
+    	goblin = enemies.create(200, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(400, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(600, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(800, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
+	goblin = enemies.create(1000, game.world.height - 64, 'goblin');
+	game.physics.enable(goblin);
     	}
     }
     
